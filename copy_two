@@ -1,0 +1,24 @@
+#!/bin/bash
+
+log_directory="path/to/log_directory"
+data_directory="path/to/data_directory"
+
+while true; do
+  # 检查vio.log文件是否存在
+  if [ -f "$log_directory/vio.log" ]; then
+    # 等待2分钟
+    sleep 120
+
+    # 检查vio.log文件是否仍然存在
+    if [ -f "$log_directory/vio.log" ]; then
+      # 复制vio.log文件到data目录
+      cp "$log_directory/vio.log" "$data_directory"
+
+      # 输出复制成功的消息
+      echo "成功复制vio.log文件到$data_directory。"
+    fi
+  fi
+
+  # 等待1分钟
+  sleep 60
+done
